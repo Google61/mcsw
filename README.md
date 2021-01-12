@@ -17,7 +17,7 @@ Host Minecraft server via GitHub Workflows!
 * Now go to your network again and find out server's IP *(if you've followed recommended step it will be like 192.168.196.xxx, just numbers after last dot will change)*
 * In Minecraft add server with IP from previous step
 * Voila!
-![screen](https://github.com/Google61/mc-server-workflow/raw/main/screen.png)
+![screen](https://github.com/Google61/mcsw/raw/main/screen.png)
 
 ## Fun facts
 
