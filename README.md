@@ -11,7 +11,7 @@ Host Minecraft server via GitHub Workflows!
 * Go in repo **Settings** tab, then **Secrets**. Add a `ZEROTIERNETID` secret with value of your network ID
 * Install ZeroTire One on your device and connect to network from previous step
 * Go to your network and identify your device *(recommended to add name)*
-* In repo, go to Actions tab and select `Minecraft Server` workflow
+* In repo, go to **Actions** tab and select `Minecraft Server` workflow
 * You should be able to run workflow manually, run it
 * Wait until server generates world...
 * Now go to your network again and find out server's IP *(if you've followed recommended step it will be like 192.168.196.xxx, just numbers after last dot will change)*
