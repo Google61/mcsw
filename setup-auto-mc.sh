@@ -5,7 +5,7 @@ mkdir -p server
 cd server
 if [[ "$versiontype" == "fabric" ]]
 then
-  echo "Downloading Fabric..."
+  echo "Downloading Minecraft Fabric..."
   wget -O fabric-installer.jar $fabriclink
   java -jar fabric-installer.jar server -downloadMinecraft
 elif [[ "$versiontype" == "vanilla" ]]
@@ -19,11 +19,15 @@ then
   jar_url=$(jq -r ".downloads.server.url" "$manifest")
   echo "Downloading Minecraft $latest_version..."
   curl -Ss -o "server.jar" "$jar_url"
+elif [[ "$versiontype" == "custom" ]]
+then
+  echo "Downloading custom Minecraft..."
+  wget -O server.jar $customlink
 elif [[ "$versiontype" == "none" ]]
 then
   exit
 else
   echo "Unknown Minecraft version type: $versiontype"
-  echo "Possible values: fabric vanilla none"
+  echo "Possible values: fabric vanilla custom none"
   exit 1
 fi
