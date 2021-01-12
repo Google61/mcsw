@@ -39,6 +39,8 @@ jobs:
         run: ./run-mc.sh
       - name: Disconnect ZeroTier
         if: ${{ cancelled() }} || success() || failure()
+        env:
+          zerotiernetid: ${{ secrets.ZEROTIERNETID }}
         run: ./disconnect-zerotier.sh
       - name: Upload artifact
         if: ${{ cancelled() }} || success() || failure()
