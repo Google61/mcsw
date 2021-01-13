@@ -26,9 +26,9 @@ jobs:
         env:
           ngrokauthtoken: ${{ secrets.NGROKAUTHTOKEN }}
         run: ./setup-ngrok.sh
-*      - name: Run server
-*        if: success() || failure()
-*        run: ./run-mc.sh
+#      - name: Run server
+#        if: success() || failure()
+#        run: ./run-mc.sh
 #      - name: Disconnect ZeroTier
 #        if: ${{ cancelled() }} || success() || failure()
 #        env:
