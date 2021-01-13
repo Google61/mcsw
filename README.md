@@ -1,6 +1,6 @@
 # mcsw
 
-Host Minecraft server via GitHub Workflows!
+Host Minecraft: Java Edition server via GitHub Workflows!
 
 ## Hello world!
 
