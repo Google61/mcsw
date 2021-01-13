@@ -8,6 +8,14 @@ then
   echo "Downloading Minecraft Fabric..."
   wget -O fabric-installer.jar $fabriclink
   java -jar fabric-installer.jar server -downloadMinecraft
+  echo jar=fabric-server-launch.jar>>../setup-auto-mc.cfg
+elif [[ "$versiontype" == "forge" ]]
+then
+  echo "Downloading Minecraft Forge..."
+  wget -O forge-installer.jar $forgelink
+  java -jar forge-installer.jar --installServer
+  java -jar forge-installer.jar --installServer
+  echo jar=$(find . -name "forge-*-universal.jar")>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "vanilla" ]]
 then
   version_manifest_url="https://launchermeta.mojang.com/mc/game/version_manifest.json"
@@ -19,15 +27,17 @@ then
   jar_url=$(jq -r ".downloads.server.url" "$manifest")
   echo "Downloading Minecraft $latest_version..."
   curl -Ss -o "server.jar" "$jar_url"
+  echo jar=server.jar>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "custom" ]]
 then
   echo "Downloading custom Minecraft..."
   wget -O server.jar $customlink
+  echo jar=server.jar>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "none" ]]
 then
-  exit
+  echo jar=server.jar>>../setup-auto-mc.cfg
 else
   echo "Unknown Minecraft version type: $versiontype"
-  echo "Possible values: fabric vanilla custom none"
+  echo "Possible values: fabric forge vanilla custom none"
   exit 1
 fi
