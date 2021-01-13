@@ -25,15 +25,10 @@ jobs:
         if: success() || failure()
         env:
           ngrokauthtoken: ${{ secrets.NGROKAUTHTOKEN }}
-        run: ./setup-ngrok.sh
-#      - name: Run server
-#        if: success() || failure()
-#        run: ./run-mc.sh
-#      - name: Disconnect ZeroTier
-#        if: ${{ cancelled() }} || success() || failure()
-#        env:
-#          zerotiernetid: ${{ secrets.ZEROTIERNETID }}
-#        run: ./disconnect-zerotier.sh
+        run: ./setup-ngrok.sh &
+      - name: Run server
+        if: success() || failure()
+        run: ./run-mc.sh
       - name: Upload artifact
         if: ${{ cancelled() }} || success() || failure()
         uses: actions/upload-artifact@v2
