@@ -21,3 +21,8 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 * By default, it will download latest `vanilla` server. In `setup-auto-mc.cfg` you can set it to `fabric`, `forge`, `custom`, or `none`. *Note: for custom/modded server you will have to specify installer jar link*
 * Job limit - 6 hours, so every 6 hours you will have to run workflow again.
 * Your repository has to be **public** to have unlimited actions time, else it will have 2000 minutes (33.3hrs) limit in a month for free account.
+
+# Branches
+
+`ngrok` (default) - implements ngrok tunneling, exposes server to a global IP
+`zerotier` (old method) - implements ZeroTier, one of "lan-over-internet" solutions. Creates a local network among connected over client 
