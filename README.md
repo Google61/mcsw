@@ -3,10 +3,16 @@
 Host Minecraft: Java Edition server via GitHub Workflows!
 
 ## Hello world!
-
-*Implementing ngrok instead of zerotier...*
-
-![screen](https://github.com/Google61/mcsw/raw/main/screen.png)
+* Hit `Use this template` *(assuming you're on desktop site)*
+* Register/login at https://dashboard.ngrok.com/login
+* Copy your authtoken *(from step 2 on Setup page, or at Authentication, Your authtoken)*
+* Go in repo's **Settings**, **Secrets**, create a `NGROKAUTHTOKEN` secret with value of your authtoken
+* Now in **Actions**, select **Minecraft Server** workflow and run it manually
+* Wait until server generate world (first run takes up to 1 minute)...
+* Then, at ngrok dashboard, go in **Status**, **Tunnels** - under `URL` column you will see server's global IP
+* In Minecraft add server with that IP
+* Voila!
+![screen](https://github.com/Google61/mcsw/raw/ngrok/screen.png)
 
 ## Fun facts
 
