@@ -24,5 +24,5 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 
 # Branches
 
-`ngrok` (default) - implements ngrok tunneling, exposes server to a global IP
-`zerotier` (old method) - implements ZeroTier, one of "lan-over-internet" solutions. Creates a local network among connected over client 
+`ngrok` (default) - implements ngrok tunneling, exposes server to a global IP    
+`zerotier` (old method) - implements ZeroTier, one of "lan-over-internet" solutions. Creates a local network among connected over client
