@@ -14,7 +14,6 @@ then
   echo "Downloading Minecraft Forge..."
   wget -O forge-installer.jar $forgelink
   java -jar forge-installer.jar --installServer
-  java -jar forge-installer.jar --installServer
   echo jar=$(find . -name "forge-*-universal.jar")>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "vanilla" ]]
 then
