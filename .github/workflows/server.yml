@@ -21,11 +21,9 @@ jobs:
       - name: Update server
         if: success() || failure()
         run: ./setup-auto-mc.sh
-      - name: Setup ngrok
+      - name: Setup playit
         if: success() || failure()
-        env:
-          ngrokauthtoken: ${{ secrets.NGROKAUTHTOKEN }}
-        run: ./setup-ngrok.sh &
+        run: ./setup-playit.sh
       - name: Run server
         if: success() || failure()
         run: ./run-mc.sh
@@ -36,7 +34,7 @@ jobs:
           name: server
           path: |
                 server
-                !*ngrok*
+                !*playit*
                 !server/logs
                 !server/*mixin*
                 !server/*fabric*
