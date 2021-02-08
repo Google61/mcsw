@@ -2,17 +2,24 @@
 
 Host Minecraft: Java Edition server via GitHub Workflows!
 
+## Branches
+
+`ngrok` (default) - implements tunneling over ngrok   
+`playit` (alternative method) - implements playit tunneling, supports UDP protocol (used by Minecraft: Bedrock Edition and Geyser). If connecting over mobile network, hotspot has to be enabled.   
+`zerotier` (old method) - implements ZeroTier, one of "lan-over-internet" solutions. Creates a local network among connected over client users
+
+
 ## Hello world!
-* Hit `Use this template` *(assuming you're on desktop site)*
-* Register/login at https://dashboard.ngrok.com/login
-* Copy your authtoken *(from step 2 on Setup page, or at Authentication, Your authtoken)*
-* Go in repo's **Settings**, **Secrets**, create a `NGROKAUTHTOKEN` secret with value of your authtoken
-* Now in **Actions**, select **Minecraft Server** workflow and run it manually
-* Wait until server generate world (first run takes up to 1 minute)...
-* Then, at ngrok dashboard, go in **Status**, **Tunnels** - under `URL` column you will see server's global IP
+* Hit **Use this template**, choose desired branch
+* Go to **Actions** tab, select `Minecraft Server` workflow
+* Run it manually, as message suggest
+* Go inside running action, under `Setup playit` step you should click confirmation link. This will redirect you to playit.gg panel
+* At panel, under **Minecraft Java** press **Add tunnel**
+* Leave local IP as is, press **Confirm**
+* Now you got your server's global IP, it will be alike *.auto.playit.gg
 * In Minecraft add server with that IP
 * Voila!
-![screen](https://github.com/Google61/mcsw/raw/ngrok/screen.png)
+![screen](https://github.com/Google61/mcsw/raw/playit/screen.png)
 
 ## Fun facts
 
@@ -21,8 +28,3 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 * By default, it will download latest `vanilla` server. In `setup-auto-mc.cfg` you can set it to `fabric`, `forge`, `custom`, or `none`. *Note: for custom/modded server you will have to specify installer jar link*
 * Job limit - 6 hours, so every 6 hours you will have to run workflow again.
 * Your repository has to be **public** to have unlimited actions time, else it will have 2000 minutes (33.3hrs) limit in a month for free account.
-
-# Branches
-
-`ngrok` (default) - implements ngrok tunneling, exposes server to a global IP    
-`zerotier` (old method) - implements ZeroTier, one of "lan-over-internet" solutions. Creates a local network among connected over client users
