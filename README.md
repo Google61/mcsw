@@ -10,7 +10,7 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 
 
 ## Hello world!
-* Hit **Use this template** *(assuming you're on desktop site)*
+* Hit **Use this template**, choose desired branch
 * Register/login at https://dashboard.ngrok.com/login
 * Copy your authtoken *(from step 2 on Setup page, or at Authentication, Your authtoken)*
 * Go in repo's **Settings**, **Secrets**, create a `NGROKAUTHTOKEN` secret with value of your authtoken
