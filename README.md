@@ -11,14 +11,14 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 
 ## Hello world!
 
-* Hit **Use this template**, choose desired branch
+* Hit **Use this template**, check **Include all branches**
 * Register/login into account at https://my.zerotire.com
 * Create **public** network *(In IPv4 auto assign I use last option, for ease of use)*
 * Go in repo's **Settings**, then **Secrets**. Add a `ZEROTIERNETID` secret with value of your ZeroTier network ID
 * Install ZeroTier One on your device and connect
 * Go to your network and identify your device *(recommended to add name)*
 * In repo, go to **Actions** tab and select `Minecraft Server` workflow
-* Run workflow manually
+* Press **Run manually**, choose `zerotier` branch
 * Wait until server generates world (first run takes about 1 minute)...
 * Now go to your network again and find out server's IP *(if you've followed recommended step it will be like 192.168.196.xxx, just last numbers will change)*
 * In Minecraft add server with that IP
