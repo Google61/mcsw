@@ -10,9 +10,9 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 
 
 ## Hello world!
-* Hit **Use this template**, choose desired branch
+* Hit **Use this template**, check **Include all branches**
 * Go to **Actions** tab, select `Minecraft Server` workflow
-* Run it manually, as message suggest
+* Press **Run it manually**, choose `playit` brnach
 * Go inside running action, under `Setup playit` step you should click confirmation link. This will redirect you to playit.gg panel
 * At panel, under **Minecraft Java** press **Add tunnel**
 * Leave local IP as is, press **Confirm**
