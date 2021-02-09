@@ -42,4 +42,5 @@ jobs:
                 !server/*fabric*
                 !server/*server*.jar
                 !server/*forge*
+                !server/cache
                 !server/libraries
