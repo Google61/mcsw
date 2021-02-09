@@ -12,11 +12,13 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 ## Hello world!
 * Hit **Use this template**, check **Include all branches**
 * Go to **Actions** tab, select `Minecraft Server` workflow
-* Press **Run it manually**, choose `playit` brnach
+* Press **Run workflow**, choose `playit` brnach
 * Go inside running action, under `Setup playit` step you should click confirmation link. This will redirect you to playit.gg panel
-* At panel, under **Minecraft Java** press **Add tunnel**
-* Leave local IP as is, press **Confirm**
-* Now you got your server's global IP, it will be alike *.auto.playit.gg
+* Login with Discord
+* Press **Claim server**
+* At **Minecraft Java** press **Add tunnel**
+* Leave local IP as is, press **Add**
+* Now you got your server's global IP, it will be like *.auto.playit.gg
 * In Minecraft add server with that IP
 * Voila!
 ![screen](https://github.com/Google61/mcsw/raw/playit/screen.png)
