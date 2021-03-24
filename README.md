@@ -12,7 +12,7 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 ## Hello world!
 * Hit **Use this template**, check **Include all branches**
 * Go to **Actions** tab, select `Minecraft Server` workflow
-* Press **Run workflow**, choose `playit` brnach
+* Press **Run workflow**, choose `playit` branch
 * Go inside running action, under `Setup playit` step you should click confirmation link. This will redirect you to playit.gg panel
 * Login with Discord
 * Press **Claim server**
