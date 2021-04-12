@@ -2,12 +2,11 @@ name: Minecraft Server
 
 on:
   workflow_dispatch:
-
-inputs:
-  ngrokRegion:
-    description: 'ngrok region'
-    required: false
-    default: 'eu'
+    inputs:
+      ngrokRegion:
+        description: 'ngrok region'
+        required: false
+        default: 'eu'
 
 jobs:
   host:
