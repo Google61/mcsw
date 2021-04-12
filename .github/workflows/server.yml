@@ -3,6 +3,12 @@ name: Minecraft Server
 on:
   workflow_dispatch:
 
+inputs:
+  ngrokRegion:
+    description: 'ngrok region'
+    required: false
+    default: 'eu'
+
 jobs:
   host:
     runs-on: ubuntu-latest
