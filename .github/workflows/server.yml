@@ -18,6 +18,7 @@ jobs:
               github_token: ${{secrets.GITHUB_TOKEN}}
               workflow: server.yml
               path: ./
+              workflow_conclusion: completed
       - name: Update server
         if: success() || failure()
         run: ./setup-auto-mc.sh
