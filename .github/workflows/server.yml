@@ -10,9 +10,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Unpack custom zip
+        id: unpack
         run: 'chmod +x * && ./unpack-custom-zip.sh'
       - name: Download artifact
-        if: failure()
+        if: steps.unpack.outputs.zip_unpacked != 'true'
+        continue-on-error: true
         uses: dawidd6/action-download-artifact@v2
         with:
               github_token: ${{secrets.GITHUB_TOKEN}}
@@ -20,16 +22,13 @@ jobs:
               path: ./
               workflow_conclusion: completed
       - name: Update server
-        if: success() || failure()
         run: ./setup-auto-mc.sh
-      - name: Setup playit
-        if: success() || failure()
+      - name: Setup playit & show URL
         run: ./setup-playit.sh
       - name: Run server
-        if: success() || failure()
         run: ./run-mc.sh
       - name: Upload artifact
-        if: ${{ cancelled() }} || success() || failure()
+        if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           name: server
@@ -43,3 +42,11 @@ jobs:
                 !server/*forge*
                 !server/cache
                 !server/libraries
+      - name: Remove custom zip
+        if: always()
+        run: 'test -f server.zip && rm server.zip || exit 0'
+      - name: Push change
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: server.zip
