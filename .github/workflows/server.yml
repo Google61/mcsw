@@ -19,6 +19,7 @@ jobs:
         run: 'chmod +x * && ./unpack-custom-zip.sh'
       - name: Download artifact
         if: steps.unpack.outputs.zip_unpacked != 'true'
+        continue-on-error: true
         uses: dawidd6/action-download-artifact@v2
         with:
               github_token: ${{secrets.GITHUB_TOKEN}}
