@@ -6,13 +6,13 @@ cd server
 if [[ "$versiontype" == "fabric" ]]
 then
   echo "Downloading Minecraft Fabric..."
-  wget -O fabric-installer.jar $fabriclink
+  wget -q -O fabric-installer.jar $fabriclink
   java -jar fabric-installer.jar server -downloadMinecraft
   echo jar=fabric-server-launch.jar>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "forge" ]]
 then
   echo "Downloading Minecraft Forge..."
-  wget -O forge-installer.jar $forgelink
+  wget -q -O forge-installer.jar $forgelink
   java -jar forge-installer.jar --installServer
   echo jar=$(find . -name "forge-*-universal.jar")>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "vanilla" ]]
@@ -30,7 +30,7 @@ then
 elif [[ "$versiontype" == "custom" ]]
 then
   echo "Downloading custom Minecraft..."
-  wget -O server.jar $customlink
+  wget -q -O server.jar $customlink
   echo jar=server.jar>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "none" ]]
 then
