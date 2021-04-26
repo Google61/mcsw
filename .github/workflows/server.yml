@@ -32,6 +32,8 @@ jobs:
         env:
           ngrokauthtoken: ${{ secrets.NGROKAUTHTOKEN }}
         run: ./setup-ngrok.sh &
+      - name: Show ngrok URL
+        run: 'sleep 2s && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url'
       - name: Run server
         run: ./run-mc.sh
       - name: Upload artifact
