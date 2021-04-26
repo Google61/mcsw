@@ -15,9 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Unpack custom zip
+        id: unpack
         run: 'chmod +x * && ./unpack-custom-zip.sh'
       - name: Download artifact
-        if: failure()
+        if: steps.unpack.outputs.zip_unpacked != 'true'
         uses: dawidd6/action-download-artifact@v2
         with:
               github_token: ${{secrets.GITHUB_TOKEN}}
@@ -25,18 +26,15 @@ jobs:
               path: ./
               workflow_conclusion: completed
       - name: Update server
-        if: success() || failure()
         run: ./setup-auto-mc.sh
       - name: Setup ngrok
-        if: success() || failure()
         env:
           ngrokauthtoken: ${{ secrets.NGROKAUTHTOKEN }}
         run: ./setup-ngrok.sh &
       - name: Run server
-        if: success() || failure()
         run: ./run-mc.sh
       - name: Upload artifact
-        if: ${{ cancelled() }} || success() || failure()
+        if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           name: server
@@ -50,3 +48,10 @@ jobs:
                 !server/*forge*
                 !server/cache
                 !server/libraries
+        - name: Remove custom zip
+          if: steps.unpack.outputs.zip_unpacked = 'true'
+          run: 'rm server.zip'
+        - name: Push change
+          uses: stefanzweifel/git-auto-commit-action@v4
+          with:
+            file_pattern: server.zip
