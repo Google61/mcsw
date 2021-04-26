@@ -48,10 +48,10 @@ jobs:
                 !server/*forge*
                 !server/cache
                 !server/libraries
-        - name: Remove custom zip
-          if: steps.unpack.outputs.zip_unpacked = 'true'
-          run: 'rm server.zip'
-        - name: Push change
-          uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            file_pattern: server.zip
+      - name: Remove custom zip
+        if: steps.unpack.outputs.zip_unpacked = 'true'
+        run: 'rm server.zip'
+      - name: Push change
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: server.zip
