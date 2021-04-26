@@ -5,7 +5,7 @@ on:
     inputs:
       ngrokRegion:
         description: 'ngrok region'
-        required: false
+        required: true
         default: 'eu'
 
 jobs:
@@ -50,9 +50,10 @@ jobs:
                 !server/cache
                 !server/libraries
       - name: Remove custom zip
-        if: steps.unpack.outputs.zip_unpacked == 'true'
-        run: 'rm server.zip'
+        if: always()
+        run: 'test -f server.zip && rm server.zip || exit 0'
       - name: Push change
+        if: always()
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: server.zip
