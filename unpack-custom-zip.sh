@@ -5,8 +5,8 @@ if test -f ../server.zip
 then
   echo "Unpacking custom zip..."
   unzip ../server.zip
+  echo "::set-output name=zip_unpacked::true"
 else
-  echo "Custom zip not found!"
-  echo "Downloading latest save..."
-  exit 1
+  echo "server.zip is not present, skipping..."
+  echo "::set-output name=zip_unpacked::false"
 fi
