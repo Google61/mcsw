@@ -12,7 +12,7 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 ## Hello world!
 
 * Hit **Use this template**, check **Include all branches**
-* Register/login into account at https://my.zerotire.com
+* Register/login into account at https://my.zerotier.com
 * Create **public** network *(In IPv4 auto assign I use last option, for ease of use)*
 * Go in repo's **Settings**, then **Secrets**. Add a `ZEROTIERNETID` secret with value of your ZeroTier network ID
 * Install ZeroTier One on your device and connect
