@@ -21,6 +21,7 @@ then
   tmp="version_manifest.json"
   if [[ ! -z "$mcversion" ]]
   then
+  curl -Ss -o "$tmp" "$version_manifest_url"
   latest_version=$mcversion
   else
   latest_version=$(curl -Ss -o "$tmp" "$version_manifest_url" && jq .latest.release -r "$tmp")
