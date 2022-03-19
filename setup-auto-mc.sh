@@ -7,7 +7,7 @@ if [[ "$versiontype" == "fabric" ]]
 then
   echo "Downloading Minecraft Fabric..."
   wget -q -O fabric-installer.jar $fabriclink
-  java -jar fabric-installer.jar server -downloadMinecraft
+  java -jar fabric-installer.jar server $([[ ! -z "$mcversion" ]] && echo "-mcversion $mcversion") -downloadMinecraft
   echo jar=fabric-server-launch.jar>>../setup-auto-mc.cfg
 elif [[ "$versiontype" == "forge" ]]
 then
@@ -19,7 +19,12 @@ elif [[ "$versiontype" == "vanilla" ]]
 then
   version_manifest_url="https://launchermeta.mojang.com/mc/game/version_manifest.json"
   tmp="version_manifest.json"
+  if [[ ! -z "$mcversion" ]]
+  then
+  latest_version=$mcversion
+  else
   latest_version=$(curl -Ss -o "$tmp" "$version_manifest_url" && jq .latest.release -r "$tmp")
+  fi
   latest_manifest_url=$(cat "$tmp" | jq -r ".versions[] | select(contains({type: \"release\", id: \"$latest_version\"})) | .url")
   manifest="/tmp/manifest.$latest_version.json"
   curl -Ss -o "$manifest" "$latest_manifest_url"
