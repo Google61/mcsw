@@ -1,4 +1,7 @@
 . ./settings.cfg
+[[ -z "$method" ]] && [[ -z "$ngrokauthtoken" ]] || method=ngrok
+[[ -z "$method" ]] && [[ -z "$zerotiernetid" ]] || method=zerotier
+[[ -z "$method" ]] && method=playit
 case $method in
 ngrok)
 wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
