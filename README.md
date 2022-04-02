@@ -2,26 +2,43 @@
 
 Host Minecraft: Java Edition server via GitHub Workflows!
 
-## Branches
-
-`ngrok` (default) - implements tunneling over ngrok   
-~~`playit` (alternative method) - implements playit tunneling, supports UDP protocol (used by Minecraft: Bedrock Edition and Geyser, untested).~~ (doesn't work for now)  
-`zerotier` (old method) - implements ZeroTier, one of "lan-over-internet" solutions. Creates a local network among connected over client users
-
+![screen](https://github.com/Google61/mcsw/raw/ngrok/screen.png)
 
 ## Hello world!
-* Hit **Use this template**, check **Include all branches** if you want to use `playit` or `zerotier`
-* Register/login at https://dashboard.ngrok.com/login
-* Copy your authtoken *(from step 2 on Setup page, or at Authentication, Your authtoken)*
-* Go to repo's **Settings**, **Secrets**, create a `NGROKAUTHTOKEN` secret with value of your authtoken
-* In **Actions**, select `Minecraft Server` workflow and run it manually
-* Wait until server generate world (first run takes up to 1 minute)...
-* 2 ways to know your server's IP:  
-  At **ngrok dashboard**: go to **Status**, **Tunnels** - you'll see it under `URL` column  
-  Inside **Actions** run: go to **Actions** tab, choose running workflow. Click on `server` job - you'll find IP in `Show ngrok URL` step
-* In Minecraft add server with that IP
-* Voila!
-![screen](https://github.com/Google61/mcsw/raw/ngrok/screen.png)
+* **Use this template** or fork it
+* Now you must pick tunneling method:
+<details><summary>ngrok</summary>
+1. Register/login at https://dashboard.ngrok.com/login<br>
+2. Copy your authtoken <i>(from step 2 on Setup page, or at Authentication, Your authtoken)</i><br>
+3. Go to repo's <b>Settings</b>, <b>Secrets</b>, create <code>NGROKAUTHTOKEN</code> secret, paste your authtoken in value and save it<br>
+4. In <b>Actions</b>, select <code>Minecraft Server</code> workflow and run it manually<br>
+5. 2 ways to get your server's IP:<br>
+  5.1 At <b>ngrok dashboard</b>: go to <b>Status</b>, <b>Tunnels</b> - you'll see it under <code>URL</code> column<br>
+  5.2 In <b>Actions</b> run: go to <b>Actions</b> tab, choose running workflow. Click on <code>server</code> job - you'll find IP in <code>Show ngrok URL</code> step<br>
+6. Have fun!
+</details>
+<details><summary>playit.gg</summary>
+1. In <code>setup-tunnel.cfg</code> change <code>method=ngrok</code> to <code>method=playit</code><br>
+2. In <b>Actions</b> tab select <code>Minecraft Server</code> workflow, <b>Run workflow</b><br>
+3. Go inside running action, under <code>Setup playit</code> step you should click confirmation link. This will redirect you to playit.gg panel<br>
+4. Login with Discord<br>
+5. Press <b>Claim server</b><br>
+6. At <b>Minecraft Java</b> press <b>Add tunnel</b><br>
+7. Leave local IP as is, press <b>Add</b><br>
+8. Now you got your server's global IP, it will be like *.auto.playit.gg<br>
+9. Have fun!
+</details>
+<details><summary>ZeroTier</summary>
+1. In <code>setup-tunnel.cfg</code> change <code>method=ngrok</code> to <code>method=zerotier</code><br>
+2. Register/login into account at https://my.zerotier.com<br>
+3. Create <b>public</b> network <i>(In IPv4 auto assign select last option)</i><br>
+4. Go to repo's <b>Settings</b>, <b>Secrets</b>. Create <code>ZEROTIERNETID</code> secret, in value paste your ZeroTier network ID<br>
+5. Install ZeroTier One on your device and connect<br>
+6. Go to your network and identify your device <i>(recommended to add name)</i><br>
+7. In repo, go to <b>Actions</b> tab and select <code>Minecraft Server</code> workflow, <b>Run workflow</b><br>
+8. Now go to your network again and find out server's IP <i>(if you've selected last option in auto assign, IP will be like 192.168.196.*)</i><br>
+9. Have fun!
+</details>
 
 ## Fun facts
 
