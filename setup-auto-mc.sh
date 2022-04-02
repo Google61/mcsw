@@ -1,22 +1,21 @@
 #!/bin/bash
-scriptpath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-. $scriptpath/setup-auto-mc.cfg
+. ./settings.cfg
 mkdir -p server
 cd server
-if [[ "$versiontype" == "fabric" ]]
-then
-  echo "Downloading Minecraft Fabric..."
+case $versiontype in
+fabric)
+  echo "Downloading Minecraft $mcversion Fabric..."
   wget -q -O fabric-installer.jar $fabriclink
   java -jar fabric-installer.jar server $([[ ! -z "$mcversion" ]] && echo "-mcversion $mcversion") -downloadMinecraft
-  echo jar=fabric-server-launch.jar>>../setup-auto-mc.cfg
-elif [[ "$versiontype" == "forge" ]]
-then
+  echo jar=fabric-server-launch.jar>>../settings.cfg
+;;
+forge)
   echo "Downloading Minecraft Forge..."
   wget -q -O forge-installer.jar $forgelink
   java -jar forge-installer.jar --installServer
-  echo jar=$(find . -name "forge-*-universal.jar")>>../setup-auto-mc.cfg
-elif [[ "$versiontype" == "vanilla" ]]
-then
+  echo jar=$(find . -name "forge-*-universal.jar")>>../settings.cfg
+;;
+vanilla)
   version_manifest_url="https://launchermeta.mojang.com/mc/game/version_manifest.json"
   tmp="version_manifest.json"
   if [[ ! -z "$mcversion" ]]
@@ -32,17 +31,21 @@ then
   jar_url=$(jq -r ".downloads.server.url" "$manifest")
   echo "Downloading Minecraft $latest_version..."
   curl -Ss -o "server.jar" "$jar_url"
-  echo jar=server.jar>>../setup-auto-mc.cfg
-elif [[ "$versiontype" == "custom" ]]
-then
+  echo jar=server.jar>>../settings.cfg
+;;
+custom)
   echo "Downloading custom Minecraft..."
   wget -q -O server.jar $customlink
-  echo jar=server.jar>>../setup-auto-mc.cfg
-elif [[ "$versiontype" == "none" ]]
-then
-  echo jar=server.jar>>../setup-auto-mc.cfg
-else
+  echo jar=server.jar>>../settings.cfg
+;;
+none)
+  echo "NOT downloading Minecraft"
+  test -f server.jar || echo "server.jar not found" && exit 1
+  echo jar=server.jar>>../setttings.cfg
+;;
+*)
   echo "Unknown Minecraft version type: $versiontype"
-  echo "Possible values: fabric forge vanilla custom none"
+  echo "Usage: fabric forge vanilla custom none"
   exit 1
-fi
+;;
+esac
