@@ -21,10 +21,6 @@ playit -s > url.log &
 sleep 2s
 echo "Claim URL: $(grep -io 'https://playit.gg/claim/[a-z0-9]*' url.log)"
 ;;
-zerotier)
-curl -s https://install.zerotier.com | sudo bash
-sudo zerotier-cli join $zerotiernetid
-;;
 *)
 echo "Unknown tunneling method: $method"
 exit 1
