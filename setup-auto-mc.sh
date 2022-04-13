@@ -5,12 +5,14 @@ cd server
 case $versiontype in
 fabric)
   echo "Downloading Minecraft $mcversion Fabric..."
+  [[ -z "$fabriclink" ]] && echo "no fabric link?" && exit 1
   wget -q -O fabric-installer.jar $fabriclink
   java -jar fabric-installer.jar server $([[ ! -z "$mcversion" ]] && echo "-mcversion $mcversion") -downloadMinecraft
   echo jar=fabric-server-launch.jar>>../settings.cfg
 ;;
 forge)
   echo "Downloading Minecraft Forge..."
+  [[ -z "$forgelink" ]] && echo "no forge link?" && exit 1
   wget -q -O forge-installer.jar $forgelink
   java -jar forge-installer.jar --installServer
   echo jar=$(find . -name "forge-*-universal.jar")>>../settings.cfg
@@ -35,6 +37,7 @@ vanilla)
 ;;
 custom)
   echo "Downloading custom Minecraft..."
+  [[ -z "$customlink" ]] && echo "no custom jar link?" && exit 1
   wget -q -O server.jar $customlink
   echo jar=server.jar>>../settings.cfg
 ;;
