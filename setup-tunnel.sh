@@ -10,9 +10,9 @@ chmod +x ngrok
 ./ngrok authtoken $ngrokauthtoken
 ./ngrok tcp --region=$ngrokregion 25565 &
 sleep 2s
-url=$(curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
+url=$(curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url | sed 's#tcp://##g')
 echo "ngrok URL: $url"
-echo "IPv4: $(dig +short $url)"
+echo "IPv4: $(dig +short $(echo "$url" | cut -f1 -d":"))"
 echo "Port: $(echo $url | grep -o -E '[^:]+$')"
 ;;
 playit)
