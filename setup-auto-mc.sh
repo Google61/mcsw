@@ -2,30 +2,31 @@
 . ./settings.cfg
 mkdir -p server
 cd server
+[[ -z "$versiontype" ]] && echo "no versiontype?" && exit 1
 case $versiontype in
 fabric)
   echo "Downloading Minecraft $mcversion Fabric..."
-  [[ -z "$fabriclink" ]] && echo "no fabric link?" && exit 1
-  wget -q -O fabric-installer.jar $fabriclink
+  [[ -z "$jarlink" ]] && echo "no fabric link?" && exit 1
+  wget -q -O fabric-installer.jar $jarlink
   java -jar fabric-installer.jar server $([[ ! -z "$mcversion" ]] && echo "-mcversion $mcversion") -downloadMinecraft
   echo jar=fabric-server-launch.jar>>../settings.cfg
 ;;
 forge)
   echo "Downloading Minecraft Forge..."
-  [[ -z "$forgelink" ]] && echo "no forge link?" && exit 1
-  wget -q -O forge-installer.jar $forgelink
+  [[ -z "$jarlink" ]] && echo "no forge link?" && exit 1
+  wget -q -O forge-installer.jar $jarlink
   java -jar forge-installer.jar --installServer
   echo jar=$(find . -name "forge-*-universal.jar")>>../settings.cfg
 ;;
 vanilla)
   version_manifest_url="https://launchermeta.mojang.com/mc/game/version_manifest.json"
   tmp="version_manifest.json"
+  curl -Ss -o "$tmp" "$version_manifest_url"
   if [[ ! -z "$mcversion" ]]
   then
-  curl -Ss -o "$tmp" "$version_manifest_url"
   latest_version=$mcversion
   else
-  latest_version=$(curl -Ss -o "$tmp" "$version_manifest_url" && jq .latest.release -r "$tmp")
+  latest_version=$(jq .latest.release -r "$tmp")
   fi
   latest_manifest_url=$(cat "$tmp" | jq -r ".versions[] | select(contains({type: \"release\", id: \"$latest_version\"})) | .url")
   manifest="/tmp/manifest.$latest_version.json"
@@ -37,8 +38,8 @@ vanilla)
 ;;
 custom)
   echo "Downloading custom Minecraft..."
-  [[ -z "$customlink" ]] && echo "no custom jar link?" && exit 1
-  wget -q -O server.jar $customlink
+  [[ -z "$jarlink" ]] && echo "no custom jar link?" && exit 1
+  wget -q -O server.jar $jarlink
   echo jar=server.jar>>../settings.cfg
 ;;
 none)
