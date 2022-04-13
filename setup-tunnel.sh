@@ -11,9 +11,10 @@ chmod +x ngrok
 ./ngrok tcp --region=$ngrokregion 25565 &
 sleep 2s
 url=$(curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url | sed 's#tcp://##g')
+echo "url=$url">>./settings.cfg
+echo "ip=$(dig +short $(echo "$url" | cut -f1 -d":"))">>./settings.cfg
+echo "port=$(echo $url | grep -o -E '[^:]+$')">>./settings.cfg
 echo "ngrok URL: $url"
-echo "IPv4: $(dig +short $(echo "$url" | cut -f1 -d":"))"
-echo "Port: $(echo $url | grep -o -E '[^:]+$')"
 ;;
 playit)
 curl -SsL https://playit-cloud.github.io/ppa/key.gpg | sudo apt-key add -
