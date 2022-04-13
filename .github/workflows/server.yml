@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ngrokauthtoken: ${{ secrets.NGROKAUTHTOKEN }}
-      zerotiernetid: ${{ secrets.ZEROTIERNETID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
