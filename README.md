@@ -12,11 +12,8 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 2. In <b>Actions</b> tab select <code>Minecraft Server</code> workflow, <b>Run workflow</b><br>
 3. Go to <b>Actions</b> tab, choose running workflow, then <code>host</code> job, <code>Setup tunnel</code> step, click claim URL. This will redirect you to playit.gg panel<br>
 4. Register/login<br>
-5. ?<br>
-6. ?<br>
-7. ?<br>
-8. ?<br>
-9. Have fun!
+5. Create <b>Minecraft Java</b> tunnel, "Can you connect to your..." - <b>Yes</b>, <b>Add tunnel</b><br>
+6. Tunnel address is the IP!<br>
 </details>
 <details><summary>ngrok</summary>
 1. Register/login at https://dashboard.ngrok.com/login<br>
