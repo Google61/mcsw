@@ -19,7 +19,7 @@ forge)
   echo jar=$(find . -name "forge-*-universal.jar")>>../settings.cfg
 ;;
 vanilla)
-  version_manifest_url="https://launchermeta.mojang.com/mc/game/version_manifest.json"
+  version_manifest_url="https://piston-meta.mojang.com/mc/game/version_manifest.json"
   tmp="version_manifest.json"
   curl -Ss -o "$tmp" "$version_manifest_url"
   if [[ ! -z "$mcversion" ]]
