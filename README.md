@@ -30,6 +30,6 @@ Host Minecraft: Java Edition server via GitHub Workflows!
 
 * After cancelling run, it will upload `server` artifact, archive with server world and properties. You can download it, edit jsons, add mods, whatever, then upload it back in repo as `server.zip` *(max file size upload from browser is 25mb, so I've excluded server.jar and fabric; you can upload large files with `git lfs` anyway)*
 * Workflow will unpack `server.zip` and remove it from repository later, or download artifact from last run if zip is gone.  
-* By default, it will download latest `vanilla` server. In `setup-auto-mc.cfg` you can set it to `fabric`, `forge`, `custom`, or `none`. *Note: for custom/modded server you will have to specify installer jar link*
+* By default, it will download latest `vanilla` server. In `settings.cfg` you can set it to `fabric`, `forge`, `custom`, or `none`. *Note: for custom/modded server you will have to specify installer jar link*
 * Job timeout - 6 hours
 * Your repository must be **public** to have unlimited actions time, else it will have 2000 minutes (33.3hrs) limit in a month for free account.
